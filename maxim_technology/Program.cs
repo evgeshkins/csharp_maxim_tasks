@@ -1,4 +1,4 @@
-﻿namespace maxim_technology
+namespace maxim_technology
 {
     internal class Program
     {
