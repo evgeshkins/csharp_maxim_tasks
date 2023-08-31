@@ -51,7 +51,7 @@ namespace maxim_technology
                 }
                 return reverseResult;             
             }
-        public static string StringLetterCounter(string inputStr)
+        public static string StringLetterCounter(string inputStr) // метод подсчёта кол-ва повторений каждого символа в строке
         {
             Dictionary<char, int> letterCounter = new Dictionary<char, int>(); // словарь: ключ - символ строки, значение - кол-во повторений
             for (int i=0; i<inputStr.Length; i++)
@@ -72,6 +72,34 @@ namespace maxim_technology
             }
             return stringCountInfo;
         }
+        public static string LargestSubstringFinder(string inputStr) // метод нахождения наибольшей подстроки, начинающейся и заканчивающейся на гласную букву из «aeiouy»
+        {
+            string substringBorders = "aeiouy"; // строка, символы которой являются границами для подстроки fafffe
+            int startIndex = -1, endIndex = -1;
+            for (int i = 0; i < inputStr.Length; i++)
+            {
+                if (substringBorders.Contains(inputStr[i]))
+                {
+                    if (startIndex == -1) startIndex = i;
+                    else
+                    {
+                        endIndex = i;
+                    }
+                }
+            }
+            
+            if (startIndex == -1)
+            {
+                string substringNotFoundMessage = "Подстрока, начинающаяся и заканчивающаяся на гласную букву из «aeiouy» не найдена.";
+                return substringNotFoundMessage;
+            } 
+            else
+            {
+                string substringResult = "Наибольщая подстрока, начинающаяся и заканчивающаяся на гласную букву из «aeiouy»:\n" +
+                    $"{inputStr.Substring(startIndex, endIndex - startIndex+1)}";
+                return substringResult;
+            }
+        }
         static void Main(string[] args)
         {
             string stringReverseInput = String.Empty;
@@ -85,6 +113,8 @@ namespace maxim_technology
                 Console.WriteLine($"\nРезультат:\n{stringReverseResult}");
                 string stringLetterCounterResult = StringLetterCounter(stringReverseResult);
                 Console.WriteLine(stringLetterCounterResult);
+                string largestSubstringFinderResult = LargestSubstringFinder(stringReverseResult);
+                Console.WriteLine(largestSubstringFinderResult);
             }
             Console.ReadKey();
         }
